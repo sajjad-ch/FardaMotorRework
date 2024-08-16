@@ -1,0 +1,21 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}ویرایش خودرو{% endblock %}
+{% block content %}
+    <h1>ویرایش خودرو</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ car_form.car_name.label }}:
+    {{ car_form.car_name }}
+    {{ car_form.car_name.errors }}
+    <br>
+    <br>
+    <br>
+    {{ car_form.VIN_number.label }}:
+    {{ car_form.VIN_number }}
+    {{ car_form.VIN_number.errors }}
+    <br>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

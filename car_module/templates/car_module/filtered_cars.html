@@ -1,0 +1,22 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}لیست خودرو های فیلتر شده {% endblock %}
+{% block content %}
+    <form method="post" action="{% url 'filter_cars' %}">
+        {% csrf_token %}
+        {{ car_form.as_p }}
+        <button type="submit">فیلتر کردن خودرو</button>
+    </form>
+
+    {% if filtered_car %}
+        {% for car in filtered_car %}
+            <a href="{% url 'car-detail' car.car_name car.VIN_number %}">{{ car }}</a> |||||
+            <a href="{% url 'car-delete' car.car_name car.VIN_number %}">حذف خودرو</a> |||||
+            <a href="{% url 'car-update' car.car_name car.VIN_number %}">ویرایش</a> |||||
+            <a href="{% url 'reports' car.car_name car.VIN_number %}">گزارشات</a> |||||
+            <br>
+            <br>
+        {% endfor %}
+    {% else %}
+        <p>خودرویی برای نمایش وجود ندارد.</p>
+    {% endif %}
+{% endblock %}

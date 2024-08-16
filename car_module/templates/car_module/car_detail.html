@@ -1,0 +1,12 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}جزئیات خودرو{% endblock %}
+{% block content %}
+    <h2>جزئیات خودرو</h2>
+    {{ car_form.car_name }}خودرو:
+    <br>
+    <br>
+    {{ car_form.VIN_number }}شماره شاسی:
+    <br>
+    <br>
+    <a href="{% url 'car-list' %}">بازگشت به لیست خودروها</a>
+{% endblock content %}

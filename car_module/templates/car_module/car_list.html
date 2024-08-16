@@ -1,0 +1,73 @@
+<head>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-around; /* Adjust as needed */
+            align-items: center; /* Vertical alignment of items */
+            flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+        }
+
+        .button-container h2 {
+            margin: 0 10px; /* Adjust margin around headings */
+        }
+
+        .button-container a {
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+{% extends 'shared/_layout.html' %}
+{% block title %}لیست خودرو ها {% endblock %}
+{% block content %}
+    <h2>خودروهای اخیر</h2>
+    {% if page_obj.object_list %}
+        <ul>
+            {% for car in page_obj.object_list %}
+                <li>
+                    <a href="{% url 'car-detail' car.car_name car.VIN_number %}">{{ car }}</a>|||||
+                    <a href="{% url 'car-delete' car.car_name car.VIN_number %}">حذف خودرو</a>|||||
+                    <a href="{% url 'car-update' car.car_name car.VIN_number %}">ویرایش</a>|||||
+                    <a href="{% url 'reports' car.car_name car.VIN_number %}">گزارشات</a>|||||
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>. خودرویی برای نمایش وجود ندارد </p>
+    {% endif %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; اول</a>
+                <a href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+            {% endif %}
+
+            <span class="current">
+                صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">آخر &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+<div class="button-container">
+    <a href="{% url 'add-car' %}">
+        <button type="button">اضافه کردن خودرو</button>
+    </a>
+    <a href="{% url 'filter_cars' %}">
+        <button type="button">فیلتر کردن خودروها</button>
+    </a>
+    <a href="{% url 'filter_reports' %}">
+        <button type="button">فیلتر کردن گزارشات</button>
+    </a>
+</div>
+    <footer>developed by Sajjad Cheriki | email: sajjadbad2002@gmail.com</footer>
+{% endblock %}
+

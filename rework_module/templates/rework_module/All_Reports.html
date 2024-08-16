@@ -1,0 +1,28 @@
+{% extends 'shared/_layout.html' %}
+{% load jalali_tags %}
+{% block title %}لیست ایرادات{% endblock %}
+{% block content %}
+    <h2>{{ car_name }}-{{ car_VIN }} ایرادات</h2>
+    {% if reports %}
+        <ul>
+            {% for report in reports %}
+                <li>
+                    <a href="{% url 'report-detail' car_name car_VIN report.pk %}">{{ report }}</a>|||||
+                    <a href="{% url 'report-delete' car_name car_VIN report.pk %}">پاک کردن ایراد</a>|||||
+                    {{ report.get_jalali_create_date  }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>ایرادی برای نمایش وجود ندارد.</p>
+    {% endif %}
+    <br>
+    <br>
+    <a href="{% url 'add-report' car_name car_VIN %}">
+        <button type="button">اضافه کردن ایراد</button>
+    </a>
+    <a href="{% url 'car-list' %}">
+        <button type="button">بازگشت به لیست خودرو ها</button>
+    </a>
+
+{% endblock content %}

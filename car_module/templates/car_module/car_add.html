@@ -1,0 +1,30 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}خودرو جدید{% endblock %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ car_form.car_name.label }}:
+    {{ car_form.car_name }}
+    {{ car_form.car_name.errors }}
+    <br>
+    <br>
+    <br>
+    {{ car_form.VIN_number.label }}: RA00
+    {{ car_form.VIN_number }}
+    {{ car_form.VIN_number.errors }}
+    <br>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+{% if car_form.errors %}
+    <ul>
+        {% for field in car_form %}
+            {% if field.errors %}
+                <li>{{ field.label }}: {{ field.errors }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock content %}

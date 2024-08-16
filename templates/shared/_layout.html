@@ -1,0 +1,21 @@
+{% load static %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'css/farda.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'shared/header_references.html' %}
+    {% block header_references %}{% endblock %}
+</head>
+<body>
+    <img src="{% static 'images/farda-motors.jpg' %}" alt="Description of the image" style="width: 20%;">
+    {% block content %}{% endblock %}
+    {% include 'shared/footer_references.html' %}
+    {% block footer_references %}{% endblock %}
+</body>
+</html>

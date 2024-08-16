@@ -1,0 +1,26 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}صفحه اصلی{% endblock %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'register_page' %}">
+        <button type="button">  ثبت نام</button>
+    </a>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'login_page' %}">
+        <button type="button"> ورود</button>
+    </a>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'forget_password_page' %}">
+        <button type="button"> فراموشی رمز عبور</button>
+    </a>
+    <br>
+    <br>
+    <br>
+    <footer>developed by Sajjad Cheriki | email: sajjadbad2002@gmail.com</footer>
+{% endblock content %}
